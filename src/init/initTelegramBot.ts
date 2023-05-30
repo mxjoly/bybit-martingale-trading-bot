@@ -27,15 +27,5 @@ export const initTelegramBot = () => {
     sendTelegramMessage(`ℹ️ Current status: ${status}`);
   });
 
-  bot.onText(/\/addLevel (.+)/, (msg, match) => {
-    console.log(match);
-  });
-
-  bot.onText(/\/deleteLevel (.+)/, (msg, match) => {});
-
-  bot.onText(/\/clearLevels (.+)/, (msg, match) => {});
-
-  bot.onText(/\/viewLevels (.+)/, (msg, match) => {});
-
   return bot;
 };

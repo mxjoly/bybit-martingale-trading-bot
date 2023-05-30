@@ -4,6 +4,8 @@ import { intervalToMinutes } from './utils/interval';
 import { error, log } from './utils/log';
 import { calculatePositionSize } from './utils/riskManagement';
 import { getWsConfig, getWsLogger } from './ws';
+import { updateBotStatus } from './db';
+import { sendTelegramMessage } from './telegram';
 
 class Bot {
   private client: LinearClient;
@@ -87,6 +89,9 @@ class Bot {
   }
 
   public async run() {
+    updateBotStatus('active');
+    sendTelegramMessage('▶️ The robot starts');
+
     Object.entries(this.candleSockets).forEach(([symbol, socket]) => {
       socket.on('update', (data) => {
         const candle = data.data[0] as WebsocketCandle; // 0: previous confirm candle, 1: current candle
@@ -104,6 +109,9 @@ class Bot {
   }
 
   public stop() {
+    updateBotStatus('inactive');
+    sendTelegramMessage('⏹ The robot stops');
+
     Object.entries(this.candleSockets).forEach(([symbol, socket]) => {
       const strategy = this.config.strategies.find(
         (s) => s.asset + s.base === symbol
