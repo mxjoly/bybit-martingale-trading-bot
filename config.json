@@ -5,10 +5,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -16,10 +16,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -27,10 +27,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -38,10 +38,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -49,10 +49,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -60,10 +60,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -71,10 +71,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -82,10 +82,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -93,10 +93,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     },
     {
@@ -104,10 +104,10 @@
       "base": "USDT",
       "leverage": 10,
       "interval": "5",
-      "initial_margin": 0.02,
-      "max_margin": 0.2,
-      "profit_target": 0.01,
-      "rebuy_level": 0.025,
+      "initial_margin": 0.05,
+      "max_margin": 0.5,
+      "profit_target": 0.005,
+      "rebuy_level": 0.01,
       "max_drawdown": 0.01
     }
   ]
