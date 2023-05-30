@@ -1,1 +1,1 @@
-# bybit-trading-bot
+# bybit-martingale-trading-bot
