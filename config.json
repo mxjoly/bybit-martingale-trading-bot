@@ -1,0 +1,11 @@
+{
+  "strategies": [
+    {
+      "asset": "BTC",
+      "base": "USDT",
+      "leverage": 10,
+      "default_risk_ratio": 2,
+      "interval": "5"
+    }
+  ]
+}
