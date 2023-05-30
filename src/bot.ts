@@ -1,11 +1,12 @@
 import { LinearClient, SymbolInfo, WebsocketClient } from 'bybit-api';
 import dayjs from 'dayjs';
 import { intervalToMinutes } from './utils/interval';
-import { error, log } from './utils/log';
 import { calculatePositionSize } from './utils/riskManagement';
 import { getWsConfig, getWsLogger } from './ws';
 import { updateBotStatus } from './db';
 import { sendTelegramMessage } from './telegram';
+import { decimalCeil, decimalFloor } from './utils/math';
+import { getPricePrecision } from './utils/symbol';
 
 class Bot {
   private client: LinearClient;
@@ -139,8 +140,6 @@ class Bot {
   }
 
   private async onCandleChange(symbol: string, lastCandle: WebsocketCandle) {
-    if (!lastCandle.confirm) return;
-
     const strategy = this.config.strategies.find(
       (s) => s.asset + s.base === symbol
     );
@@ -157,24 +156,107 @@ class Bot {
     const position = bothSidePosition.result[0];
     const hasPosition = position.position_margin > 0;
 
+    const activeOrders = await this.client.queryActiveOrder({ symbol });
+    const hasActiveOrders =
+      activeOrders.result.filter((order) => order.symbol == symbol).length > 0;
+
     // ===================== Strategy ===================== //
     const long = true;
-    const short = true;
     // ======================================================== //
 
-    if (long && !hasPosition) {
+    if (long && !hasPosition && !hasActiveOrders) {
+      const initialMargin = balance.wallet_balance * strategy.initial_margin;
+      const quantity = calculatePositionSize(
+        initialMargin,
+        lastCandle.close,
+        this.symbolInfos[symbol]
+      );
+
+      this.client.placeActiveOrder({
+        symbol,
+        order_type: 'Limit',
+        qty: quantity,
+        side: 'Buy',
+        price: lastCandle.close,
+        close_on_trigger: false,
+        reduce_only: false,
+        time_in_force: 'PostOnly',
+      });
     }
 
-    if (short && !hasPosition) {
+    // Check the drawdown of position
+    if (hasPosition) {
+      const isCritical =
+        position.unrealised_pnl <=
+        -balance.wallet_balance * strategy.max_drawdown;
+
+      if (isCritical) {
+        this.client.placeActiveOrder({
+          symbol,
+          order_type: 'Market',
+          qty: position.size,
+          side: 'Sell',
+          close_on_trigger: false,
+          reduce_only: true,
+          time_in_force: 'GoodTillCancel',
+        });
+      }
     }
   }
 
   private async onExecutionOrder(order: WebsocketOrder[]) {
-    const positions = await this.client.getPosition({
-      symbol: order[0].symbol,
-    });
+    const symbol = order[0].symbol;
+    const strategy = this.config.strategies.find(
+      (s) => s.asset + s.base === symbol
+    );
 
+    const balance = (await this.client.getWalletBalance()).result[
+      strategy.base
+    ];
+
+    const positions = await this.client.getPosition({ symbol });
     const position = positions.result[0]; // 0: buy side 1: Sell side
+
+    // Cancel the previous orders
+    this.client.cancelAllActiveOrders({ symbol }).then(() => {
+      if (position.size > 0) {
+        const tp = decimalFloor(
+          position.entry_price * (1 + strategy.profit_target),
+          getPricePrecision(this.symbolInfos[symbol])
+        );
+        const rebuy = decimalCeil(
+          position.entry_price * (1 - strategy.rebuy_level),
+          getPricePrecision(this.symbolInfos[symbol])
+        );
+
+        this.client.placeActiveOrder({
+          symbol,
+          order_type: 'Limit',
+          qty: position.size,
+          side: 'Sell',
+          price: tp,
+          close_on_trigger: false,
+          reduce_only: true,
+          time_in_force: 'PostOnly',
+        });
+
+        if (
+          position.position_value <
+          balance.wallet_balance * strategy.max_margin
+        ) {
+          this.client.placeActiveOrder({
+            symbol,
+            order_type: 'Limit',
+            qty: position.size,
+            side: 'Buy',
+            price: rebuy,
+            close_on_trigger: false,
+            reduce_only: false,
+            time_in_force: 'PostOnly',
+          });
+        }
+      }
+    });
   }
 }
 

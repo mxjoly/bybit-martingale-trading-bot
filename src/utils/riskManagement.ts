@@ -8,7 +8,11 @@ export function calculatePositionSize(
   symbolInfo: SymbolInfo
 ) {
   const minQuantity = symbolInfo.lot_size_filter.min_trading_qty;
-  const quantityPrecision = getQuantityPrecision(symbolInfo);
+  const quantityPrecisionString = String(getQuantityPrecision(symbolInfo));
+
+  let quantityPrecision = quantityPrecisionString.includes('.')
+    ? quantityPrecisionString.split('.')[1].length
+    : 0;
 
   const quantity = baseQuantity / price;
 

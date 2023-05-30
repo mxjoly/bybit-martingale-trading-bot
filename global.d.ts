@@ -7,7 +7,11 @@ interface Strategy {
   base: string;
   leverage: number;
   interval: Interval;
-  default_risk_ratio: number;
+  initial_margin: number;
+  max_margin: number;
+  profit_target: number;
+  rebuy_level: number;
+  max_drawdown: number;
 }
 
 type BotStatus = 'active' | 'inactive';

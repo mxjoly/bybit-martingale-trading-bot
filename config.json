@@ -1,11 +1,114 @@
 {
   "strategies": [
     {
-      "asset": "BTC",
+      "asset": "DYDX",
       "base": "USDT",
       "leverage": 10,
-      "default_risk_ratio": 2,
-      "interval": "5"
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "FTM",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "AVAX",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "ARB",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "INJ",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "SOL",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "APT",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "OP",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "ADA",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
+    },
+    {
+      "asset": "SUI",
+      "base": "USDT",
+      "leverage": 10,
+      "interval": "5",
+      "initial_margin": 0.02,
+      "max_margin": 0.2,
+      "profit_target": 0.01,
+      "rebuy_level": 0.025,
+      "max_drawdown": 0.01
     }
   ]
 }
